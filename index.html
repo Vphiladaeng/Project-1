@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+
+<head>
+    <title>Travel * Choice</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="assets/css/style.css">
+    <style>
+        .jumbotron {
+            background-image: url(assets/images/TravelRoad.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            /*background-size: 100% 70%; */
+            background-color: #333333;
+            color: #333333;
+            /*margin-bottom: 0;*/
+        }
+
+        footer {
+            background-image: url(assets/images/TravelRoad.png);
+            background-repeat: no-repeat;
+            background-position: center;
+            background-color: #333333;
+            padding: 48px;
+        }
+    </style>
+</head>
+
+<body>
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav">
+                    <li>
+                        <a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#basicModal">Get
+                            started</a>
+                    </li>
+                    <li id="main">
+                        <button class="openbtn" onclick="openNav()">&#9734; Favorites</button>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="jumbotron">
+        <div class="container text-center">
+            <h1>Travel * Choice</h1>
+            <p style="color:#333333;">The right commute. Everytime.</p>
+        </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="col-sm-offset-2 col-sm-8">
+                <div class="panel panel-primary">
+                    <div class="panel-heading">
+                        <p class=" panelTop text-center">Choose a destination<br>Where would you like to go today?
+                        </p>
+                    </div>
+                    <div class="panel-body" id="#">
+                        <div id="map"></div>
+                        <form class="form-inline">
+                            <div class="col text-center">
+                                <p>Click NEXT button for your arrival times<br>
+                                    FAV button to create a favorite location.</p><br>
+                                
+                                <input type="text" name="Towhere" id="fav-label">
+                                <button type="button" class="btn btn-primary" id="add-fav">FAV</button>
+                               <br>
+                                <button type="button" class="btn btn-primary text-center" style="padding: 10px; padding-right:40px; padding-left: 40px">
+                                        <a href="results.html" style="color:#fff;">NEXT</a>
+                                    </button>
+                            </div>
+                           
+                        </form>
+                    </div>
+                </div>
+
+            </div>
+
+        </div><br><br>
+
+
+    </div>
+    </div>
+    <footer class="container-fluid text-center">
+
+    </footer>
+
+    <!-- Sidebar code  -->
+
+    <div id="mySidebar" class="sidebar">
+        <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+        <div id="fav-list"></div>
+
+    </div>
+
+    <!-- basic modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    <h3 class="modal-title" id="myModalLabel">Welcome</h3>
+                    <p> Let’s get rolling. To select your location, feel free to click on the map<br>
+                        this will get your arrival location.
+                        or to type your address in below. This will prompt a chart of your most
+                        convenient route to choose from. Using the device of your choosing, you will know the
+                        estimated time, cost and current weather of your
+                        selected location.</p>
+                </div>
+                <div class="modal-body">
+                    <h3>Selection Process</h3>
+                    <ol>
+                        <li>Choose your location on the map provided.</li>
+                        <li>Click the NEXT button for your results</li>
+                        <li>Submit it to favorites if you wish to save it.</li>
+                        <li>Name your favorite in the text box.</li>
+                        <li>Click the FAV button for your results</li>
+                    </ol>
+                    <div>
+                        <h3>Picking a location</h3>
+                        <img src="assets/images/MapView1.png" alt=""><span>
+                            <h3>Picking a Favorite</h3>
+                            <img src="assets/images/MapView2.png" alt="">
+                        </span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+        function openNav() {
+            document.getElementById("mySidebar").style.width = "250px";
+            document.getElementById("main").style.marginLeft = "250px";
+        }
+
+        /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+        function closeNav() {
+            document.getElementById("mySidebar").style.width = "0";
+            document.getElementById("main").style.marginLeft = "0";
+        }
+    </script>
+
+
+
+
+
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/5.10.0/firebase.js"></script>
+    <script type="text/javascript" src="assets/javascript/api.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+
+
+
+    <script>
+        //gets local location through IP address
+        //ipLookUp();
+        //getUserLocation()
+        var map, infoWindow;
+        function initMap() {
+            map = new google.maps.Map(document.getElementById('map'), {
+                center: { lat: -34.397, lng: 150.644 },
+                zoom: 6
+            });
+            infoWindow = new google.maps.InfoWindow;
+
+
+
+
+            // Try HTML5 geolocation.
+            if (navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    var pos = {
+                        lat: position.coords.latitude,
+                        lng: position.coords.longitude
+                    };
+                    console.log(position.coords.latitude);
+                    console.log(position.coords.longitude);
+                    sessionStorage.setItem("sLat", position.coords.latitude);
+                    sessionStorage.setItem("sLong", position.coords.longitude);
+                    infoWindow.setPosition(pos);
+                    infoWindow.setContent('Location found.');
+                    infoWindow.open(map);
+                    map.setCenter(pos);
+                    map.setZoom(10)
+                }, function () {
+                    handleLocationError(true, infoWindow, map.getCenter());
+                });
+            } else {
+                // Browser doesn't support Geolocation
+                handleLocationError(false, infoWindow, map.getCenter());
+            }
+            // google.maps.event.addListenerOnce(map, 'idle', function(){
+            google.maps.event.addListener(map, 'click', function (e) {
+                setMapOnAll(null);
+                console.log(e.latLng);
+                console.log(e.latLng.lat());
+                console.log(e.latLng.lng());
+                sessionStorage.setItem("eLat", e.latLng.lat());
+                sessionStorage.setItem("eLong", e.latLng.lng());
+                placeMarker(e.latLng, map);
+            });
+
+            function placeMarker(position, map) {
+                var marker = new google.maps.Marker({
+                    position: position,
+                    map: map
+                });
+                markers.push(marker);
+                map.panTo(position);
+            }
+            //});
+
+            function setMapOnAll(map) {
+                for (var i = 0; i < markers.length; i++) {
+                    markers[i].setMap(map);
+                }
+            }
+
+
+        }
+
+        function handleLocationError(browserHasGeolocation, infoWindow, pos) {
+            infoWindow.setPosition(pos);
+            infoWindow.setContent(browserHasGeolocation ?
+                'Error: The Geolocation service failed.' :
+                'Error: Your browser doesn\'t support geolocation.');
+            infoWindow.open(map);
+        }
+
+        var markers = [];
+
+        // This event listener calls addMarker() when the map is cli2cked.
+
+
+
+        //Local Storage for Favs
+        var favs = JSON.parse(localStorage.getItem('favorites'));
+        $("#add-fav").on("click", function (event) {
+            event.preventDefault();
+            addFav();
+        });
+    </script>
+    <script>
+        gKey = '';
+
+        var config = {
+            apiKey: "AIzaSyC3B80wCH3buyVYpREMx1KueJfoGNAgGXo",
+            authDomain: "api-keys-f798d.firebaseapp.com",
+            databaseURL: "https://api-keys-f798d.firebaseio.com",
+            projectId: "api-keys-f798d",
+            storageBucket: "api-keys-f798d.appspot.com",
+            messagingSenderId: "110897771681"
+        };
+        firebase.initializeApp(config);
+        var database = firebase.database();
+
+
+        firebase.database().ref().once('value').then(function (snapshot) {
+            //console.log(snapshot);
+            gKey = snapshot.node_.children_.root_.value.value_;
+            //console.log(gKey);
+            var gScript = document.createElement('script');
+            gScript.setAttribute('src', "https://maps.googleapis.com/maps/api/js?key=" + gKey + "&callback=initMap");
+            document.body.appendChild(gScript);
+
+
+        });
+
+
+    </script>
+
+</body>
+
+</html>

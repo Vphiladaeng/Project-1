@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <title>Travel*Choice</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link rel="stylesheet" href="assets/css/style.css">
+  <style>
+    .jumbotron {
+      background-image: url(assets/images/TravelRoad.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      /*background-size: 100% 70%; */
+      background-color: #333333;
+      color: #333333;
+      margin-bottom: 0;
+    }
+
+    footer {
+      background-image: url(assets/images/NUBanner1.png);
+      background-repeat: no-repeat;
+      background-position: center;
+      background-color: #f2f2f2;
+      padding: 48px;
+    }
+    #weather-panel{
+      background: grey;
+      border-color: grey
+    }
+  </style>
+
+</head>
+
+<body>
+  <nav class="navbar navbar-inverse">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+
+      </div>
+      <div class="collapse navbar-collapse" id="myNavbar">
+        <ul class="nav navbar-nav">
+
+          <li>
+            <a href="#" class="btn btn-lg btn-primary" data-toggle="modal" data-target="#basicModal">Get
+              started</a>
+          </li>
+          <li id="main">
+            <button class="openbtn" onclick="openNav()">&#9734; Favorites</button>
+
+          </li>
+
+
+      </div>
+    </div>
+  </nav>
+  <div class="jumbotron img-fluid">
+    <div class="container text-center">
+      <h1>Travel * Choice</h1>
+      <p style="color: #333333;">The right commute. Everytime.</p>
+    </div>
+  </div>
+
+  <div class="container" style="margin-top:10px">
+    <div class="row">
+      <div class="col-sm-4">
+        <div class="panel panel-primary">
+          <div class="panel-heading">Uber Estimate</div>
+          <div class="panel-body" id="uberEst">
+            <!-- <img src="https://placehold.it/150x80?text=IMAGE" class="img-responsive" style="width:100%" alt="Image"> -->
+            <div class="form-group">
+              <!-- <h3>Estimate:</h3> -->
+              <p>Duration: <span class="uber-time"></span></p>
+              <p>Cost: <span class="uber-cost"></span></p>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-4">
+        <div class="panel panel-success">
+          <div class="panel-heading">Travel Estimate</div>
+          <div class="panel-body" id="transEst">
+            <!-- <h3>Transit Estimate</h3> -->
+            <p>Duration: <span id="transitDuration"></span></p>
+            <p>Distance: <span id="transitDistance"></span></p>
+          </div>
+
+        </div>
+      </div>
+
+      <div class="col-sm-4">
+        <div class="panel panel-warning">
+          <div class="panel-heading" style="background: grey">Walking Estimate</div>
+          <div class="panel-body" id="walkingEst">
+            <!-- <h3>Walking Estimate</h3> -->
+            <p>Duration: <span id="walkingDuration">Duration:</span></p>
+            <p>Distance: <span id="walkingDistance">Distance:</span></p>
+            <!-- <h3>Weather</h3>
+            <p><span id="city">Dest. City:</span></p>
+            <p><span id="temp">Temperature:</span> </p>
+            <p><span id="currWeather">Curr. Weather:</span></p> -->
+          </div>
+        </div>
+      </div>
+    </div><br>
+
+    <div class="col-sm-12">
+      <div class="panel panel-warning" style ="border-color: grey">
+        <div class="panel-heading"  style="background: grey" id="override">Destination Weather</div>
+        <div class="panel-body text-center" id="weatherReturn">
+          <!-- <h3>Weather</h3> -->
+          <p><span id="city">Address:</span></p>
+          <p><span id="temp">Temperature:</span> </p>
+          <p><span id="currWeather">Current Conditions:</span></p>
+        </div>
+      </div>
+    </div> 
+  </div><br>
+
+
+    <!-- <footer class="container-fluid text-center img-fluid">
+    </footer> -->
+
+    <!-- Sidebar code  -->
+
+    <div id="mySidebar" class="sidebar">
+      <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+      <div id="fav-list"></div>
+    </div>
+    <!-- basic modal -->
+    <div class="modal fade" id="basicModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
+      <div class="modal-dialog">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+            <h3 class="modal-title" id="myModalLabel">Return to Home page to save in Favorites</h3>
+            <p> Let’s start your travel! To select your location, feel free to click on the map
+              this will get your arrival location or type your address below. This will prompt a chart of your most
+              convenient travel route to choose from. Using the device of your choosing, you will know the
+              estimated time, cost, and current weather of your selected location.</p>
+          </div>
+          <div class="modal-body">
+            <h3>Selection Process</h3>
+            <ol>
+              <li>Choose your location on the map.</li>
+              <li>Click the NEXT button for your results</li>
+              <li>Submit to favorites if you wish to save.</li>
+              <li>Name your favorite in the text box.</li>
+              <li>Click the FAV button for your results</li>
+            </ol>
+            <div>
+              <h3>Picking a location</h3>
+              <img src="assets/images/MapView1.png" alt=""><span>
+                <h3>Picking a Favorite</h3>
+                <img src="assets/images/MapView2.png" alt="">
+              </span>
+            </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+
+    -->
+
+    <script>
+      /* Set the width of the sidebar to 250px and the left margin of the page content to 250px */
+      function openNav() {
+        document.getElementById("mySidebar").style.width = "250px";
+        document.getElementById("main").style.marginLeft = "250px";
+      }
+
+      /* Set the width of the sidebar to 0 and the left margin of the page content to 0 */
+      function closeNav() {
+        document.getElementById("mySidebar").style.width = "0";
+        document.getElementById("main").style.marginLeft = "0";
+      }
+    </script>
+
+    <script src="https://www.gstatic.com/firebasejs/5.11.0/firebase.js"></script>
+    <script type="text/javascript" src="assets/javascript/api.js"></script>
+    <script type="text/javascript" src="assets/javascript/app.js"></script>
+   
+
+
+    <script>
+
+      gKey = '';
+
+      var config = {
+        apiKey: "AIzaSyC3B80wCH3buyVYpREMx1KueJfoGNAgGXo",
+        authDomain: "api-keys-f798d.firebaseapp.com",
+        databaseURL: "https://api-keys-f798d.firebaseio.com",
+        projectId: "api-keys-f798d",
+        storageBucket: "api-keys-f798d.appspot.com",
+        messagingSenderId: "110897771681"
+      };
+      firebase.initializeApp(config);
+      var database = firebase.database();
+
+
+      firebase.database().ref().once('value').then(function (snapshot) {
+        gKey = snapshot.node_.children_.root_.value.value_;
+        console.log(sessionStorage.getItem("sLat"));
+        console.log(sessionStorage.getItem("sLong"));
+        console.log(sessionStorage.getItem("eLat"));
+        console.log(sessionStorage.getItem("eLong"));
+        getUberApi(sessionStorage.getItem("sLat"), sessionStorage.getItem("sLong"), sessionStorage.getItem("eLat"), sessionStorage.getItem("eLong"));
+        getWeather();
+        getTransit(gKey);
+        getWalking(gKey);
+      });
+
+    </script>
+</body>
+
+</html>
